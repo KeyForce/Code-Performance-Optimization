@@ -93,7 +93,11 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
 
 * Numba：A High Performance Python Compiler
 
-  在运行时将Python代码使用**LLVM编译器**编译为本地机器指令，由此来加速计算。Numba主要针对各种很大的循环优化加速。
+  在运行时将Python代码使用**LLVM编译器**编译为本地机器指令，由此来加速计算。Numba主要针对各种很大的循环优化加速。Numba对于大循环大概会有20~200倍的速度提升。
+  
+* PyPy
+
+  PyPy使用了**Just-in-Time(JIT)即时编译器**，即动态编译器，与静态编译器（如gcc,java等）不同，它是利用程序运行的过程的数据进行优化。执行的时候，标准python用`python xxx.py`来执行，而pypy用`pypy xxx.py`。Pypy大概会有3~5倍的速度提升。
 
 ## 参考
 

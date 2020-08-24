@@ -70,7 +70,7 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
 #### 6.其他
 
 * 对所需计算向量进行利用机器学习方法进行降维（PCA）
-* 向量化数据，并进行合理的字节对齐
+* 向量化数据，并进行合理的字节对齐，避免非连续内存读写
 * 合理设置Linux虚拟内存
 * 设备的使用功率也需要在考虑的范围内
 * 采用开源图形计算加速库OpenCL、Vulkan、CUDA
@@ -111,4 +111,6 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
   主要介绍并行计算相关的算法的设计和并行计算的性能优化技巧
   
 * [ThreadPool: A simple C++11 Thread Pool implementation](https://github.com/progschj/ThreadPool)
+
+* [Intel Guide for Developing Multithreaded Applications](https://software.intel.com/content/www/us/en/develop/articles/intel-guide-for-developing-multithreaded-applications.html)
 

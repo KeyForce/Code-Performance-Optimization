@@ -74,6 +74,7 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
 * 合理设置Linux虚拟内存
 * 设备的使用功率也需要在考虑的范围内
 * 采用开源图形计算加速库OpenCL、Vulkan、CUDA
+* 将乘法运算变为加法运算（参考**深度可分离卷积**）
 
 ### 测试数据
 
@@ -92,6 +93,23 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
 
 ## Python性能优化
 
+### 性能分析工具
+
+- timeit
+
+- memory_profiler
+
+- profile、cProfile：可利用[PyCharm Profile工具](https://www.jetbrains.com/help/pycharm/profiler.html#review-snapshots)进行Python性能分析，Pycharm会生成Call Graph（调用关系图）
+
+  ![profiler_call_graph](image/profiler_call_graph.png)
+
+### 编译优化
+
+- **-O**：将源码编译为 pyo 而不是 pyc, pyo 文件比 pyc 小, 效果同设置环境变量 `PYTHONOPTIMIZE=1` 一样。加上该选项可以让程序的加载速度更快, 同时节省内存。理论上加载速度快些, 注意是加载速度而不是执行速度。
+- **-OO** ：在 -O 基础上再删除 assert 语句和 docstring, 注意一些模块可能依赖这些语句, 所以要谨慎使用该选项
+
+### 第三方包优化
+
 * Numba：A High Performance Python Compiler
 
   在运行时将Python代码使用**LLVM编译器**编译为本地机器指令，由此来加速计算。Numba主要针对各种很大的循环优化加速。Numba对于大循环大概会有20~200倍的速度提升。
@@ -99,6 +117,12 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
 * PyPy
 
   PyPy使用了**Just-in-Time(JIT)即时编译器**，即动态编译器，与静态编译器（如gcc,java等）不同，它是利用程序运行的过程的数据进行优化。执行的时候，标准python用`python xxx.py`来执行，而pypy用`pypy xxx.py`。Pypy大概会有3~5倍的速度提升。
+
+* Cython: 将Python 优码转成 C
+
+* ShedSkin: 将Python 代码转成 C++
+
+* GPULib: 使用 GPUs 加速代码
 
 ## 参考
 

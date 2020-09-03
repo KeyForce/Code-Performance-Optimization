@@ -75,6 +75,9 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
 * 设备的使用功率也需要在考虑的范围内
 * 采用开源图形计算加速库OpenCL、Vulkan、CUDA
 * 将乘法运算变为加法运算（参考**深度可分离卷积**）
+* 将卷积运算转为矩阵相乘（im2col，以空间换时间的方法，消耗了更多的内存）
+* 对象复用、零拷贝
+* 乘法和加法融合为一个三元操作 **乘加**（需要硬件支持**乘加器**）
 
 ### 测试数据
 
@@ -118,7 +121,7 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
 
   PyPy使用了**Just-in-Time(JIT)即时编译器**，即动态编译器，与静态编译器（如gcc,java等）不同，它是利用程序运行的过程的数据进行优化。执行的时候，标准python用`python xxx.py`来执行，而pypy用`pypy xxx.py`。Pypy大概会有3~5倍的速度提升。
 
-* Cython: 将Python 优码转成 C
+* Cython: 将Python 代码转成 C
 
 * ShedSkin: 将Python 代码转成 C++
 

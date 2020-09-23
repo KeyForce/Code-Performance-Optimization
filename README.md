@@ -73,7 +73,7 @@ g++ -[O0, O1, O2 , O3, Ofast, -ffast-math] 四级优化选项
 * 向量化数据，并进行合理的字节对齐，避免非连续内存读写
 * 合理设置Linux虚拟内存
 * 设备的使用功率也需要在考虑的范围内
-* 采用计算加速库OpenCL、Vulkan、CUDA、OpenVX、OpenACC、OpenMP
+* 采用计算加速OpenCL、Vulkan、CUDA、OpenVX、OpenACC、OpenMP、OpenVINO、GEMM
 * 编译优化LLVM, Glow, MLIR, TVM, XLA
 * 将乘法运算变为加法运算
 * 将卷积运算转为矩阵相乘（im2col，以空间换时间的方法，消耗了更多的内存）

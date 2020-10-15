@@ -4,9 +4,10 @@
 */
 #include <iostream>
 #include <math.h>
+#include "timer.h"
 // 两个向量加法kernel，grid和block均为一维 只采用一个GPU
 __global__
-void add(int n, float *x, float *y)
+void add_one_cuda(int n, float *x, float *y)
 {
     for (int i = 0; i < n; i++)
         y[i] = x[i] + y[i];
@@ -28,7 +29,7 @@ int main(void)
     }
 
     // 执行kernel
-    add<<<1, 1>>>(N, x, y);
+    add_one_cuda<<<1, 1>>>(N, x, y);
 
     // 保证device和host数据同步，这样不用手动将device得到的结果拷贝到host
     cudaDeviceSynchronize();
